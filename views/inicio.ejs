@@ -12,7 +12,7 @@
             <%= publicacion.titulo %></h5>
         <p class="">
             <%= publicacion.contenido.substring(0,100) + ' ...' %>
-            <a href="http:/post/<%= publicacion.titulo %>">leer +</a></p>
+            <a href="/post/<%= publicacion.titulo %>">leer +</a></p>
     <% }); %></div>
 
 <%- include('partials/footer') %>
