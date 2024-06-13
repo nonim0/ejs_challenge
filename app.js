@@ -8,14 +8,13 @@ const mongoose = require('mongoose')
 const index_js = require(__dirname + '/public/js/index.js')
 
 // BASE DE DATOS (Mongoose)
-usuario = encodeURIComponent('ominon')
-contraseña = encodeURIComponent('bo9aUkXMHquMRubv')
-base_de_datos = 'notaDB'
-url = 'mongodb://localhost:27017/'
-uri = "mongodb+srv://" + usuario + ":" + contraseña + "@cluster0.yplqi7l.mongodb.net/" + base_de_datos
-
 // Conectar //
 conectar = async () =>{
+    usuario = encodeURIComponent('ominon')
+    contraseña = encodeURIComponent('bo9aUkXMHquMRubv')
+    base_de_datos = 'notaDB'
+    url = 'mongodb://localhost:27017/'
+    uri = "mongodb+srv://" + usuario + ":" + contraseña + "@cluster0.yplqi7l.mongodb.net/" + base_de_datos
     mongoose.connect(uri)
 }
 conectar().catch(error => console.log(error))
@@ -151,15 +150,16 @@ app.get('/:ir', (demnd, resp) => {
 })
 
 app.get('/post/:titulo', (demnd, resp) => {
-    titulo = 'Post'
+    titulo = _.lowerCase(demnd.params.titulo)
     filtro = {}
     titulo_demnd = _.lowerCase(demnd.params.titulo)
     publicaciones_q = buscar_varios(Nota, filtro).then((publicaciones, error) => {
         publicaciones.forEach((publicacion) => {
+            id_publicacion = publicacion._id
             titulo_publicacion = publicacion.titulo
             contenido_publicacion = publicacion.contenido
             if (titulo_publicacion === titulo_demnd) {
-                resp.render('post', {el_titulo: titulo, la_fecha: fecha, titulo_registrado: titulo_publicacion, contenido_registrado: contenido_publicacion})
+                resp.render('post', {el_titulo: titulo, nota: publicacion})
             }
         })
     })
@@ -180,9 +180,9 @@ app.post('/componer', (demnd, resp) => {
 });
 
 app.post('/eliminar', (demnd, resp) => {
-    titulo_publicacion = demnd.body.eliminar
-    filtro = {titulo: titulo_publicacion}
-    publicacion_q = eliminar(Nota, filtro).then((publicacion, error) => {
+    id_publicacion = demnd.body.eliminar
+    filtro = {_id: id_publicacion}
+    publicacion_q = eleiminar_xid(Nota, filtro).then((publicacion, error) => {
         if (!error) {
             resp.redirect('/')
         }

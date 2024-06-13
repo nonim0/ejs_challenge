@@ -1,14 +1,11 @@
 <%- include('partials/header') %>
-<h1 class=""><%= el_titulo %></h1>
-<p class=""><%= la_fecha %>.</p>
 <form action="/eliminar" method="post">
     <div class="container">
         <h5 class="">
-            <%= titulo_registrado %></h5>
+            <%= nota.titulo %></h5>
         <p class="">
-            <%=contenido_registrado %></p>
-        <button type="submit" name="eliminar" value="<%= titulo_registrado %>">Eliminar</button><div>
-</form>
-    
-   
+            <%=nota.contenido %></p></div>
+        <button type="submit" name="eliminar" value="<%= nota._id %>">Eliminar</button></form>
+
+        
 <%- include('partials/footer') %>
