@@ -91,6 +91,16 @@ buscar_actualizar = async (coleccion, filtro, elemento) => {
     return busqueda
 };
 
+eliminar = async (coleccion, filtro) => {
+    busqueda = await coleccion.deleteOne(filtro)
+    return busqueda
+};
+
+eliminar_varios = async (coleccion, filtro) => {
+    busqueda = await coleccion.deleteMany(filtro)
+    return busqueda
+};
+
 eleiminar_xid = async (coleccion, filtro) => {
     busqueda = await coleccion.findByIdAndDelete(filtro)
     return busqueda
@@ -169,6 +179,15 @@ app.post('/componer', (demnd, resp) => {
     resp.redirect('/')
 });
 
+app.post('/eliminar', (demnd, resp) => {
+    titulo_publicacion = demnd.body.eliminar
+    filtro = {titulo: titulo_publicacion}
+    publicacion_q = eliminar(Nota, filtro).then((publicacion, error) => {
+        if (!error) {
+            resp.redirect('/')
+        }
+    })
+});
 
 // app.post('/info', (demnd, resp) => {
 //     console.log(resp.statusCode)
@@ -180,12 +199,6 @@ app.post('/componer', (demnd, resp) => {
 //     resp.redirect('/contacto')
 // });
 
-
-
-// app.post('/post', (demnd, resp) => {
-//     console.log(resp.statusCode)
-//     resp.redirect('/post')
-// });
 
 
 
