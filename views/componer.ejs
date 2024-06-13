@@ -1,0 +1,13 @@
+<%- include('partials/header') %>
+<h1 class=""><%= el_titulo %></h1>
+<form class="" action="/componer" method="post">
+    <div class="">
+        <label class="form-label"></label>Tilulo:<br>
+        <input class="form-control" type="text" name="titulo" placeholder="titulo"><br>
+        <label class="form-label"></label>Contenido:<br>
+        <textarea class="form-control" name="contenido" rows="3" placeholder="escribe algo..."></textarea><br>
+    </div>
+    <button class="btn btn-secondary" type="submit" name="boton" value="">Publicar</button>
+</form>
+
+<%- include('partials/footer') %>

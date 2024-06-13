@@ -1,0 +1,17 @@
+body {
+    background-image: -webkit-linear-gradient(35deg, #fff 90%, #00000043 10%);
+}
+
+.footer {
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+
+.navbar-nav.navbar-nav_2 {
+    display: flex;
+    flex-direction: row;
+}

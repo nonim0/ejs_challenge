@@ -1,0 +1,18 @@
+<%- include('partials/header') %>
+
+<h1 class="" id="principal">
+    <%= el_titulo %></h1>
+<p class="">
+    <%= el_texto %></p>
+<p class="">
+    <%= la_fecha %>.</p>
+<div class="container">
+    <% mis_publicaciones.forEach((publicacion) => { %>
+        <h5 class="">
+            <%= publicacion.titulo %></h5>
+        <p class="">
+            <%= publicacion.contenido.substring(0,100) + ' ...' %>
+            <a href="http:/post/<%= publicacion.titulo %>">leer +</a></p>
+    <% }); %></div>
+
+<%- include('partials/footer') %>
